@@ -54,6 +54,7 @@
             class="text-ingreso"
             cols="90"
             rows="25"
+            onkeyup="mini(this);"
           ></textarea>
           <p class="p-info">Solo letras minúsculas y sin acentos</p>
           <div class="buttons">
@@ -126,6 +127,10 @@
         x.style.display = "none";
         y.style.display = "block";
       }
+    }
+
+    function mini(e) {
+      e.value = e.value.toLowerCase();
     }
 
     function copiar() {
