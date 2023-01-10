@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Encriptador ALURA</title>
+    <link rel="stylesheet" href="../reset.css/reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:ital,wght@1,500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <div class="todo">
+        <section class="logo">
+          <h1>
+            <img src="imagenes/Logo.png" alt="logo alura" />
+          </h1>
+        </section>
+
+        <section class="mensaje-salida">
+          <textarea
+            type="text"
+            id="mensaje"
+            class="text-salida"
+            cols="50"
+            rows="40"
+          ></textarea>
+
+          <div id="myDIV">
+            <img
+              src="imagenes/Muñeco.png"
+              alt="imagen del muñeco"
+              class="img-m"
+            />
+            <h2 class="subtitulo-m">Ningún mensaje fue encontrado</h2>
+            <p>Ingresa el texto que desees encriptar o desencriptar.</p>
+          </div>
+          <div id="btn-copy">
+            <button class="btn-salida" onclick="copiar()">Copiar</button>
+          </div>
+        </section>
+      </div>
+
+      <section class="encriptador">
+        <form action="">
+          <textarea
+            type="text"
+            id="textoIngresado"
+            placeholder="Ingrese el texto aqui"
+            class="text-ingreso"
+            cols="90"
+            rows="25"
+          ></textarea>
+          <p class="p-info">Solo letras minúsculas y sin acentos</p>
+          <div class="buttons">
+            <button
+              type="button"
+              id="boton"
+              class="btn-encriptar"
+              onclick="encriptador()"
+            >
+              Encriptar
+            </button>
+            <button
+              type="button"
+              id="boton"
+              class="btn-dencriptar"
+              onclick="dencriptador()"
+            >
+              Desencriptar
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+
+  <script>
+    var y = document.getElementById("btn-copy");
+    y.style.display = "none";
+    function encriptador() {
+      var texto = document.getElementById("textoIngresado").value;
+      var textoCifrado = texto
+        .replace(/e/gi, "enter")
+        .replace(/i/gi, "imes")
+        .replace(/a/gi, "ai")
+        .replace(/o/gi, "ober")
+        .replace(/u/gi, "ufat");
+
+      document.querySelector(".text-salida").value = textoCifrado;
+      document.getElementById("textoIngresado").value = "";
+
+      var x = document.getElementById("myDIV");
+      var y = document.getElementById("btn-copy");
+
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "none";
+        y.style.display = "block";
+      }
+    }
+
+    function dencriptador() {
+      var texto = document.getElementById("textoIngresado").value;
+      document.getElementById("textoIngresado").value = "";
+      var textoCifrado = texto
+        .replace(/enter/gi, "e")
+        .replace(/imes/gi, "i")
+        .replace(/ai/gi, "a")
+        .replace(/ober/gi, "o")
+        .replace(/ufat/gi, "u");
+
+      document.querySelector(".text-salida").value = textoCifrado;
+
+      var x = document.getElementById("myDIV");
+      var y = document.getElementById("btn-copy");
+
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "none";
+        y.style.display = "block";
+      }
+    }
+
+    function copiar() {
+      let copyInput = document.querySelector("#mensaje");
+      copyInput.select();
+      document.execCommand("copy");
+    }
+  </script>
+</html>
